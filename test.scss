@@ -1,0 +1,48 @@
+
+:root {
+    font-size: 16px;
+    --app-spacing: 1rem;
+}
+
+
+body {
+    #hello {
+        --size: 100px;
+        font-size: 1rem;
+        h1 {
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+        }
+    }
+    .foo {
+        a {
+            text-decoration: none;
+            color: #fff;
+            span {
+                font-style: italic;
+                background-color: green; 
+                margin: auto; 
+            }
+        }
+
+        img {
+            display: block;
+            text-decoration: dotted;
+            border: 0;
+            color: red;
+            zoom: 1; 
+        }
+
+        .labeler {
+            font-weight: bold;
+            transition: all .2s ease-out;  
+            --foo: 10px;
+            a {
+                height: var(--foo);
+                line-height: 1rem;
+            }
+            
+        }
+    }
+}
