@@ -51,10 +51,12 @@ watch(srcDir,(eventType, filename) => {
 
 
 function fixPseudoSelectors(css) {
-    const twoColonRegExp = /(\:\-)/gm
-    const oneColonRegExp = /(\[\-)/gm
+    const oneColonRegExp = /(\[\-)/gm;
+    const twoColonRegExp = /(\:\-)/gm;  
     const pseuRegExp = /(\s+)(\[)(.+)(\])/gm;
+    const selfRegExp = /(\s+\[SELF\])/gm;
     return css
+    .replace(selfRegExp, '')
     .replace(oneColonRegExp, '[:')
     .replace(twoColonRegExp, '::')
     .replace(pseuRegExp, "$3");
