@@ -49,3 +49,24 @@ The transformer also considers empty selector as errors. So be careful, maybe ju
         }
     }
 ```
+
+## Self Selector
+The transformer has a different way of referrencing the current selector.
+
+Standard way
+```css
+    a {
+        &.active {
+            color: green;
+        }
+    }
+```
+
+nest-css way 
+```css
+    a {
+        [SELF].active {
+            color: green;
+        }
+    }
+```
