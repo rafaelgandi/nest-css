@@ -1,4 +1,4 @@
-# nest-css
+# 🌈 nest-css
 Simple tool to help me write nested css. Transpiles to proper css. With the help of: https://github.com/multiprocessio/cssplus
 
 # Instructions
