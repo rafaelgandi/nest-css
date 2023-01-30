@@ -31,9 +31,10 @@ watch(srcDir,(eventType, filename) => {
                     const nestedCss = readFileSync(filePath).toString();  
                     try {                                              
                         // const transpiledCss = cssplus.transform(nestedCss);
-                        const transpiledCss = module.exports.transform(nestedCss);
+                        const transpiledCss = module.exports.transform(removeComments(nestedCss));
                         const cssFile = file.replace('.scss', '') + '.css';
-                        writeFileSync(cssFile, transpiledCss);
+                        console.log(fixPseudoSelectors(transpiledCss));
+                        writeFileSync(cssFile, fixPseudoSelectors(transpiledCss));
                         console.log('Nested CSS transpiled ✨');
                     }
                     catch (err) {   
@@ -46,3 +47,22 @@ watch(srcDir,(eventType, filename) => {
         }
     }, 300);
 });
+
+
+
+function fixPseudoSelectors(css) {
+    const twoColonRegExp = /(\:\-)/gm
+    const oneColonRegExp = /(\[\-)/gm
+    const pseuRegExp = /(\s+)(\[)(.+)(\])/gm;
+    return css
+    .replace(oneColonRegExp, '[:')
+    .replace(twoColonRegExp, '::')
+    .replace(pseuRegExp, "$3");
+}
+
+function removeComments(css) {
+    // See: https://www.regextester.com/94246
+    return css
+    .replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\/.*$/gm, '')
+}
+
