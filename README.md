@@ -7,7 +7,7 @@ Just place the nest-css.js file where your .scss files are located and the run `
 # 🫤 Quirks 
 
 ## Pseudo Selectors 
-Currently the transformer can't parse pseudo selectors properly so I had to make some work arouds.
+Currently the transformer can't parse pseudo selectors properly so I had to make some workarounds.
 
 Conventional:
 ```css
@@ -20,6 +20,10 @@ Conventional:
                 content: '';
             }
         }
+    }
+    
+    a:hover {
+        color: green;
     }
 
 ```
@@ -34,6 +38,13 @@ How we should write it so that the transformer can understand:
             [--before] {
                 content: '';
             }
+        }
+    }
+    
+    /* Need to nest the hover selector inside */
+    a {
+        [-hover] {
+            color: green;
         }
     }
 
